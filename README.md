@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+ Project Description
+This is a full-stack MERN application with two types of users: Author and User (Reader).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Authors can create articles and receive notifications when their articles are liked.
 
-## Available Scripts
+Users can only view and like articles.
 
-In the project directory, you can run:
+Redis is used to cache likes and views, reducing load on MongoDB.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+Start backend:
+npm run dev
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+User Roles
+1. Author
+Can create articles.
+Can view a dashboard with their articles.
+Receives notifications when someone likes their article.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+2. User (Reader)
+Can view all published articles.
+Can like articles.
+Cannot create articles or view notifications.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ Application Flow
+User logs in with name and phone number.
+Based on login, a role (author/user) is stored in localStorage.
+Role determines what the user can see:
+Author → Create Article, Notifications, My Articles.
+User → View and Like Articles only.
+When a user views or likes an article:
+Like/View count is updated in Redis.
+Redis reduces repeated access to MongoDB.
+When a User likes an article:
+A notification is created for the Author.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+ Technology Stack
+Frontend: React, Material UI
+Backend: Node.js, Express
+Database: MongoDB
+Caching: Redis
+Others: LocalStorage for session management
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+Key Features
+Login with name and phone number.
+Role-based access (author/user).
+Author can post articles.
+User can like/view articles.
+Likes and Views cached using Redis.
+Real-time notifications for Authors.
+Responsive UI.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+i have .env file , didnot push it github
