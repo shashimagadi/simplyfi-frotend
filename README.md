@@ -1,4 +1,4 @@
- Project Description
+ Project Description  :-
 This is a full-stack MERN application with two types of users: Author and User (Reader).
 
 Authors can create articles and receive notifications when their articles are liked.
@@ -16,20 +16,20 @@ npm run dev
 
 
 
-User Roles
+User Roles :-
 1. Author
 Can create articles.
 Can view a dashboard with their articles.
 Receives notifications when someone likes their article.
 
 
-2. User (Reader)
+2. User (Reader) :-
 Can view all published articles.
 Can like articles.
 Cannot create articles or view notifications.
 
 
- Application Flow
+ Application Flow :-
 User logs in with name and phone number.
 Based on login, a role (author/user) is stored in localStorage.
 Role determines what the user can see:
@@ -41,7 +41,8 @@ Redis reduces repeated access to MongoDB.
 When a User likes an article:
 A notification is created for the Author.
 
- Technology Stack
+
+ Technology Stack:-
 Frontend: React, Material UI
 Backend: Node.js, Express
 Database: MongoDB
@@ -49,7 +50,7 @@ Caching: Redis
 Others: LocalStorage for session management
 
 
-Key Features
+Key Features:-
 Login with name and phone number.
 Role-based access (author/user).
 Author can post articles.
